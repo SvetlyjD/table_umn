@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, Container, Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
 
@@ -10,13 +10,14 @@ const TestTable = (props) => {
     let [answer, setAnswer] = useState();
     // setTime(req.data.time);
 
-
-    if (time > 0) {
-        setTimeout(() => setTime(time - 1), 1000); console.log(time);
-    } else if (time < 1) {
-        console.log("1");
-        clickButtonHandler(-5);
-    };
+    useEffect(() => {
+        if (time > 0) {
+            setTimeout(() => setTime(time - 1), 1000); console.log(time);
+        } else if (time < 1) {
+            console.log("1");
+            clickButtonHandler(-5);
+        };
+    }, [time])
 
 
     function clickButtonHandler(e) {
