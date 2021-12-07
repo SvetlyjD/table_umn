@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { Button, Card, Container } from "react-bootstrap";
+import { useNavigate } from "react-router";
 import TestTable from "./Pages/TestTable";
 
 
 function Main() {
+    const navigate = useNavigate()
     let [value, setValue] = useState();
     let [req, setReq] = useState();
     let [div, setDiv] = useState();
@@ -48,6 +50,7 @@ function Main() {
                     <option value="2">Hard/Тяжело</option>
                 </select>
                 <Button className="mt-2" style={{ width: 120, marginLeft: 150 }} onClick={() => startTestHandler()}>Start</Button>
+                <Button className="mt-2 mx-2" onClick={() => console.log(1)}>Go Back</Button>
             </Container>
             {div ? <TestTable req={req} level={value}></TestTable>
                 : <></>}
