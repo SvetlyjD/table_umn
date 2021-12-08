@@ -6,22 +6,20 @@ import { Context } from "..";
 
 const Header = observer(() => {
     const { user } = useContext(Context)
-    // console.log(user.isAuth);
     const navigate = useNavigate();
+    let c = localStorage.getItem("token");
     return (
         <Navbar bg="dark" variant="dark" >
             <Container>
-                {user.isAuth ? <Nav className="ml-auto">
-                    <Nav.Link href="/">Main</Nav.Link>
-                    <NavLink to="/account" >Account</NavLink>
-                    <Button variant={"outline-light"} onClick={() => { user.setIsAuth(false); navigate("/auth") }}>Exit</Button>
+                {c ? <Nav className="ml-auto">
+                    <Nav.Link href="/">Тест</Nav.Link>
+                    <Button variant={"outline-light"} onClick={() => { localStorage.removeItem("token"); user.setIsAuth(false); navigate("/auth") }}>Выход</Button>
                 </Nav>
                     : <Nav className="ml-auto">
                         <Nav.Link href="/auth">Auth</Nav.Link>
                         <Nav.Link href="/signup">Registration</Nav.Link>
                     </Nav>
                 }
-
             </Container>
         </Navbar >
     );

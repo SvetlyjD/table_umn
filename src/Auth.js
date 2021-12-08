@@ -1,13 +1,12 @@
 import { observer } from "mobx-react-lite";
 import { useContext, useState } from "react";
-import { Card, Container, Form, Button, Row } from "react-bootstrap";
+import { Card, Container, Form, Button, Row, Nav } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Context } from ".";
 
 const Auth = observer(() => {
     const navigate = useNavigate()
     const { user } = useContext(Context);
-    console.log(user.isAuth);
     const [mail, setMail] = useState();
     const [password, setPassword] = useState();
     let data = {
@@ -23,13 +22,22 @@ const Auth = observer(() => {
             },
             body: JSON.stringify(data)
         }).then(res => res.json()).then((result) => {
-            localStorage.setItem("token", result.data.access_token);
-            user.setIsAuth(true);
-            navigate("/");
-            // в строке выше переделать условие чтобы в хранилище UserStore true становилось только после входа, 
-            //в данном случае после перехода на ссылку в хедере сразу обновляется на тру. 
-            // При нажатии кнопки нужно класть токен в локал сторейдж и отдельно проверять,
-            //  если он там есть то автоматически проводить авторизацию хз почитать в гугле
+            console.log(result);
+            if (result.status == false) {
+                if (result.errors.email) { alert(result.errors.email) }
+            }
+            if (result.status == false) {
+                if (result.errors.password) { alert(result.errors.password) }
+            }
+            if (result.status == false) {
+                if (result.status_code == 500) { alert("Пользователя с таким именем не существует") }
+            }
+            else {
+                localStorage.setItem("token", result.data.access_token);
+                user.setIsAuth(false);
+                navigate("/");
+            }
+
         });
     }
 
@@ -44,11 +52,11 @@ const Auth = observer(() => {
                         value={mail || ""}
                         onChange={e => setMail(e.target.value)}
                     />
-                    <Form.Control className="mt-2" placeholder="Password"
+                    <Form.Control className="mt-2" placeholder="Password" type="password"
                         value={password || ""}
                         onChange={e => setPassword(e.target.value)}
                     />
-                    <Row> <div>Перейти на страницу регистрации <NavLink to={"/signup"}>Registration</NavLink> </div>
+                    <Row className="d-flex"> <div>Перейти на страницу регистрации  <Nav.Link href={"/signup"} className="d-flex">Зарегистрироваться</Nav.Link></div>
                         <Button className="mt-3 align-self-end"
                             variant={"outline-success"} onClick={() => registrationChange()}
                         > Войти</Button>

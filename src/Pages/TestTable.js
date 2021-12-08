@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card, Container, Button } from "react-bootstrap";
-import { useNavigate } from "react-router";
+
 
 const TestTable = (props) => {
 
@@ -8,19 +8,20 @@ const TestTable = (props) => {
     let [time, setTime] = useState(props.req.data.time);
     let [req, setReq] = useState(props.req);
     let [answer, setAnswer] = useState();
-    // setTime(req.data.time);
+    let timerId;
 
     useEffect(() => {
         if (time > 0) {
-            setTimeout(() => setTime(time - 1), 1000); console.log(time);
+            timerId = setTimeout(() => setTime(time - 1), 1000); console.log(time);
         } else if (time < 1) {
-            console.log("1");
+            clearTimeout(timerId);
             clickButtonHandler(-5);
         };
     }, [time])
 
 
     function clickButtonHandler(e) {
+        clearTimeout(timerId);
         let resSecond = {
             answer: e,
             type_hard: level,

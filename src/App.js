@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
 import { Routes, Route } from "react-router-dom"
 import { Context } from '.';
@@ -7,9 +8,10 @@ import Auth from './Auth';
 import Main from './Main';
 import SignUp from './SignUp';
 
-function App() {
+const App = observer(() => {
   const { user } = useContext(Context)
-  if (user.isAuth) {
+  let c = localStorage.getItem("token");
+  if (c) {
     return (
       <div>
         <Routes>
@@ -27,6 +29,6 @@ function App() {
         <Route exact path="/Auth" element={<Auth />} />
       </Routes>
     </div>)
-}
+})
 
 export default App;
