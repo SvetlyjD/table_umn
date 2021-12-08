@@ -36,3 +36,37 @@
     transform: rotate(360deg);
   }
 }
+
+.levelPassword1{
+  background-color: yellow;
+  width: 35px;
+  margin-left: 5px;
+  margin-top: 5px;
+  height: 5px;
+  border: 1px solid black;
+}
+
+
+.levelPassword2{
+  background-color: orange;
+  width: 35px;
+  margin-left: 5px;
+  margin-top: 5px;
+  height: 5px;
+  border: 1px solid black;
+}
+
+
+.levelPassword3{
+  background-color: green;
+  width: 35px;
+  margin-left: 5px;
+  margin-top: 5px;
+  height: 5px;
+  border: 1px solid black;
+}
+
+.contValue{
+  display: flex;
+  font-size: 10px;
+}

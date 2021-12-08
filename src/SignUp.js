@@ -12,7 +12,15 @@ function SignUp() {
 
     if (password) { console.log(password.length) }
     let c = Math.ceil(password.length / 3);               //уровень сложности
-
+    if (c > 3) { c = 3 };
+    let arr = [];
+    for (let i = 0; i < c; i++) { arr.push(1) };
+    console.log(arr);
+    let contValue;
+    let levelValue;
+    if (c === 1) { contValue = "levelPassword1"; levelValue = "Простой" };
+    if (c === 2) { contValue = "levelPassword2"; levelValue = "Средний" };
+    if (c === 3) { contValue = "levelPassword3"; levelValue = "Сложный" };
 
     let data = {
         name: login,
@@ -67,7 +75,8 @@ function SignUp() {
                         value={password || ""}
                         onChange={e => setPassword(e.target.value)}
                     />
-                    {/* <div>{ }</div> */}
+                    <div className="contValue">{arr.map((item, index) =>
+                        <div key={index} className={contValue}></div>)}{levelValue}</div>
                     <Form.Control className="mt-2" placeholder="Confirm Password" type="password"
                         value={password2 || ""}
                         onChange={e => setPassword2(e.target.value)}
