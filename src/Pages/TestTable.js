@@ -9,7 +9,7 @@ const TestTable = (props) => {
     let [req, setReq] = useState(props.req);
     let [answer, setAnswer] = useState();
     let timerId;
-
+    let resSecond;
     useEffect(() => {
         if (time > 0) {
             timerId = setTimeout(() => setTime(time - 1), 1000); console.log(time);
@@ -22,11 +22,25 @@ const TestTable = (props) => {
 
     function clickButtonHandler(e) {
         clearTimeout(timerId);
-        let resSecond = {
+        console.log(answer);
+        if (answer == undefined) { alert("введите число"); return }
+        // if (answer > 0 && answer < 81) {
+        resSecond = {
             answer: e,
             type_hard: level,
             type: 2
         }
+        // }
+        // } else if (answer === "undefined") {
+        //     resSecond = {
+        //         answer: 1,
+        //         type_hard: level,
+        //         type: 2
+        //     }
+        // }
+
+
+
 
         const myHeaders = new Headers();
         myHeaders.append('Content-Type', 'application/json');
@@ -75,8 +89,6 @@ const TestTable = (props) => {
                     <div className="headerTable">Ваш балл: {req.data.points}</div>
                     <div>
                         <Table striped bordered hover size="sm">
-
-
                             <thead>
                                 <tr>
                                     <th>Question</th>
@@ -90,7 +102,6 @@ const TestTable = (props) => {
                                         <td>{item.question}</td>
                                         <td>{item.answer}</td>
                                         <td>{item.current_answer}</td>
-
                                     </tr>
                                 )}
                             </tbody>
