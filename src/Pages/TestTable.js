@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, Container, Button } from "react-bootstrap";
+import { Card, Container, Button, Table } from "react-bootstrap";
 
 
 const TestTable = (props) => {
@@ -49,7 +49,7 @@ const TestTable = (props) => {
                     <div>TIMER: {time}</div>
                     <div>{req.data.question}</div>
                     <div>{req.data.options.map((item, index) =>
-                        <Button data-key={item} key={index} onClick={(e) => clickButtonHandler(e.target.dataset.key)} className="mx-2">{item}</Button>)}</div>
+                        <Button data-key={item} key={index} onClick={(e) => clickButtonHandler(e.target.dataset.key)} className="mx-2 mt-2">{item}</Button>)}</div>
                 </Card>
             </Container>
         )
@@ -72,7 +72,30 @@ const TestTable = (props) => {
         return (
             <Container>
                 <Card style={{ width: 600 }} className="p-5 mt-5">
-                    <div>Ваш балл: {req.data.points}</div>
+                    <div className="headerTable">Ваш балл: {req.data.points}</div>
+                    <div>
+                        <Table striped bordered hover size="sm">
+
+
+                            <thead>
+                                <tr>
+                                    <th>Question</th>
+                                    <th>Answer</th>
+                                    <th>Current</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {req.data.questions.map((item, index) =>
+                                    <tr key={index}>
+                                        <td>{item.question}</td>
+                                        <td>{item.answer}</td>
+                                        <td>{item.current_answer}</td>
+
+                                    </tr>
+                                )}
+                            </tbody>
+                        </Table>
+                    </div>
                 </Card>
             </Container>
         )

@@ -13,7 +13,11 @@ const Header = observer(() => {
             <Container>
                 {c ? <Nav className="ml-auto">
                     <Nav.Link href="/">Тест</Nav.Link>
-                    <Button variant={"outline-light"} onClick={() => { localStorage.removeItem("token"); user.setIsAuth(false); navigate("/auth") }}>Выход</Button>
+                    <Button variant={"outline-light"} onClick={() => {
+                        localStorage.removeItem("token");
+                        user.setIsAuth(false);
+                        navigate("/auth")
+                    }}>Выход</Button>
                 </Nav>
                     : <Nav className="ml-auto">
                         <Nav.Link href="/auth">Auth</Nav.Link>

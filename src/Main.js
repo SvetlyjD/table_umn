@@ -10,7 +10,7 @@ const Main = observer(() => {
 
     const { user } = useContext(Context);
     user.setIsAuth(true);
-    let [value, setValue] = useState(1);
+    let [value, setValue] = useState("1");
     let [req, setReq] = useState();
     let [div, setDiv] = useState();
 
@@ -37,7 +37,7 @@ const Main = observer(() => {
     return (
         <>
             <Container >
-                <div style={{ marginTop: 20 }}>Выьберите уровень сложности</div>
+                <div style={{ marginTop: 20 }}>Выберите уровень сложности</div>
                 <select style={{ marginTop: 20 }} className="d-flex" name="" id="" onChange={(e) => setValue(e.target.value)}>
                     <option value="1">Easy/Легко</option>
                     <option value="2">Hard/Тяжело</option>

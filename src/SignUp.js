@@ -81,12 +81,11 @@ function SignUp() {
                         value={password2 || ""}
                         onChange={e => setPassword2(e.target.value)}
                     />
-
                     <Row> <div>Есть аккаунт? <NavLink to={"/auth"}>Авторизироваться</NavLink> </div>
-                        <Button className="mt-3 align-self-end"
-                            variant={"outline-success"} onClick={() => registrationChange()}
-                        > Зарегистрироваться</Button>
+
                     </Row>
+                    <Button className="mt-3 align-self-end"
+                        onClick={() => registrationChange()}> Зарегистрироваться</Button>
                 </Form>
             </Card>
 
