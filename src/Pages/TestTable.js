@@ -24,20 +24,11 @@ const TestTable = (props) => {
         clearTimeout(timerId);
         console.log(answer);
         if (answer == undefined) { alert("введите число"); return }
-        // if (answer > 0 && answer < 81) {
         resSecond = {
             answer: e,
             type_hard: level,
             type: 2
         }
-        // }
-        // } else if (answer === "undefined") {
-        //     resSecond = {
-        //         answer: 1,
-        //         type_hard: level,
-        //         type: 2
-        //     }
-        // }
 
 
 
