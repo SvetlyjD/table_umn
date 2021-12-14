@@ -27,11 +27,13 @@ const Main = observer(() => {
             method: 'POST',
             headers: myHeaders,
             body: JSON.stringify(res)
-        }).then(res => res.json()).then((result) => {
-            console.log(result);
-            setReq(result);
-            setDiv(value);
-        });
+        }).then(res => res.json())
+            .then((result) => {
+                console.log(result);
+                setReq(result);
+                setDiv(value);
+            })
+            .catch((e) => alert(e.message));
     }
 
     return (

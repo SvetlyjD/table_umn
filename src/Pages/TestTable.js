@@ -10,6 +10,7 @@ const TestTable = (props) => {
     let [answer, setAnswer] = useState();
     let timerId;
     let resSecond;
+
     useEffect(() => {
         if (time > 0) {
             timerId = setTimeout(() => setTime(time - 1), 1000); console.log(time);
@@ -23,7 +24,7 @@ const TestTable = (props) => {
     function clickButtonHandler(e) {
         clearTimeout(timerId);
         console.log(answer);
-        if (answer == undefined) { alert("введите число"); return }
+        // if (answer == undefined) { alert("введите число"); return }
         resSecond = {
             answer: e,
             type_hard: level,

@@ -21,24 +21,25 @@ const Auth = observer(() => {
                 'Content-Type': 'application/json;charset=utf-8'
             },
             body: JSON.stringify(data)
-        }).then(res => res.json()).then((result) => {
-            console.log(result);
-            if (result.status == false) {
-                if (result.errors.email) { alert(result.errors.email) }
-            }
-            if (result.status == false) {
-                if (result.errors.password) { alert(result.errors.password) }
-            }
-            if (result.status == false) {
-                if (result.status_code == 500) { alert("Пользователя с таким именем не существует") }
-            }
-            else {
-                localStorage.setItem("token", result.data.access_token);
-                user.setIsAuth(false);
-                navigate("/");
-            }
-
-        });
+        }).then(res => res.json())
+            .then((result) => {
+                console.log(result);
+                if (result.status == false) {
+                    if (result.errors.email) { alert(result.errors.email) }
+                }
+                if (result.status == false) {
+                    if (result.errors.password) { alert(result.errors.password) }
+                }
+                if (result.status == false) {
+                    if (result.status_code == 500) { alert("Пользователя с таким именем не существует") }
+                }
+                else {
+                    localStorage.setItem("token", result.data.access_token);
+                    user.setIsAuth(false);
+                    navigate("/");
+                }
+            })
+            .catch((e) => alert(e.message));;
     }
 
     return (

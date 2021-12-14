@@ -34,14 +34,15 @@ function SignUp() {
             alert("подтверждение пароля не совпадает с паролем, введите заново");
             setPassword2()
         } else {
-            try {
-                fetch('https://internsapi.public.osora.ru/api/auth/signup', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json;charset=utf-8'
-                    },
-                    body: JSON.stringify(data)
-                }).then(res => res.json()).then(result => {
+
+            fetch('https://internsapi.public.osora.ru/api/auth/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(data)
+            }).then(res => res.json())
+                .then(result => {
                     console.log(result); if (result.status == true) { alert("Вы были успешно зарегистрированы, перейдите на страницу авторизации") }
                     if (result.status == false) {
                         if (result.errors.email) { alert(result.errors.email) }
@@ -49,9 +50,8 @@ function SignUp() {
                     if (result.status == false) {
                         if (result.errors.name) { alert(result.errors.name) }
                     }
-                })
-            }
-            catch (error) { console.log(error) };
+                }).catch((e) => alert(e.message));
+
         }
     }
 
